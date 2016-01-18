@@ -1,6 +1,10 @@
 %bcond_with devel_mode
 %bcond_without kmod
-%define debug_package %{nil}
+%undefine _enable_debug_packages
+
+# Use -D 'kversion 2.6.32-131.6.1.el6.x86_64' to build package
+# for specified kernel version.
+%{!?kversion:%global kversion %(uname -r | sed s/.x86_64//g)}
 
 Name:    libxio
 Version: 1.6
@@ -15,7 +19,7 @@ Source:  http://github.com/accelio/accelio/archive/v%{version}.tar.gz
 BuildRequires: autoconf, libtool
 BuildRequires: numactl-devel, libaio-devel, libibverbs-devel, librdmacm-devel
 %if %{with kmod}
-BuildRequires: kernel-devel
+BuildRequires: kernel-devel = %{kversion}
 %endif
 
 %description
@@ -53,6 +57,7 @@ Accelio Kernel Modules
 	--disable-static \
 %if 0%{with kmod}
 	--enable-kernel-module \
+	--with-kernel=/usr/src/kernels/%{kversion}.%{_arch} \
 %endif
 %if 0%{without devel_mode}
 	--enable-stat-counters=no \
