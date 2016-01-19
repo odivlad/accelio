@@ -48,6 +48,7 @@ src/tools/usr/xio_mem_usage
 src/tools/usr/xio_if_numa_cpus
 regression/usr/reg_basic_mt/reg_basic_mt
 version.c
+v*.tar*
 */usr/*/Makefile.in
 */usr/Makefile.in
 doc

@@ -65,8 +65,7 @@ to build the library follow the following steps:
   - follow examples in ./examples/
 
 to build rpm package, execute:
-  $ ACCELIO_VERSION=1.6 #if version if higher, change the value
-  $ git archive --format=tar --prefix=accelio-$ACCELIO_VERSION/ HEAD > ~/rpmbuild/SOURCES/v$ACCELIO_VERSION.tar.gz
+  $ ./make-dist.sh
   $ rpmbuild -ba libxio.spec
 
   - you can add flags to rpmbuild command:
